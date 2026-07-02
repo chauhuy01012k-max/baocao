@@ -8,7 +8,6 @@ This file is a revision patch for `/home/huy/drive-download-20260330T022318Z-3-0
 
 ### Original text
 
-```md
 The target surveillance context of this project requires more than basic camera viewing.
 Operators need to review past incidents quickly, search for people or objects across recorded footage, inspect event evidence, and connect playback with AI-assisted follow-up [1], [2].
 Manual review becomes slow when the number of cameras, locations, and time ranges increases, and response-time expectations become more difficult to satisfy as the review workflow becomes fragmented [18], [19], [23]-[25].
@@ -18,13 +17,11 @@ The current project requirements point to several recurring needs.
 The system should support centralized monitoring and management, AI-assisted access control and identity or vehicle verification, event detection and operational alerting, investigation through playback and tracing, statistical reporting, scalable multi-site deployment, and later customization for customer-specific workflows [1], [2].
 These needs indicate that the project should not be designed as only a VMS, only an edge detector, or only an AI search tool.
 It should be designed as an integrated surveillance platform where capture, review, and analysis reinforce each other.
-```
 
-```md
+| Requirement group | Reference products and benchmark insight | Remaining gap for the project context | Project response / current prototype evidence |
+| --- | --- | --- | --- |
 | Scalable deployment and centralized multi-site rollout | Eagle Eye, Verkada, Milestone XProtect, and similar systems show multi-site and centralized deployment directions [7], [30] | A clear edge-cloud workflow that preserves local continuity while still supporting centralized playback and AI-assisted investigation is not always visible [3]-[7], [27], [30] | The system is cloud-connected and modular, but only partially cloud-native/scalable because it still uses personal GCS, MongoDB/Neo4j, and VM infrastructure. |
-```
 
-```md
 From this benchmark, the motivation of our project becomes clear.
 The project does not attempt feature parity with commercial VMS products.
 Its defensible contribution is the integrated evidence pipeline: camera stream to event clip, event clip to cloud-backed playback, and playback evidence to searchable VSS knowledge [3]-[14], [20]-[22], [30], [31].
@@ -39,27 +36,22 @@ The proposed solution is therefore not intended to replace all existing surveill
 Instead, it addresses a specific integration gap: how to connect edge capture, centralized playback, and AI-assisted investigation into one defensible capstone system [1], [2].
 This is the core motivation of the thesis.
 The project is valuable because it demonstrates that surveillance review can move beyond isolated camera viewing and manual clip inspection toward a unified workflow where evidence capture, operator review, and intelligent retrieval are designed together from the beginning [18], [19], [23]-[25].
-```
 
 ### Revised text
 
-```md
 The target surveillance context of this project requires more than basic camera viewing.
 Operators need a workflow that can connect incident review, recorded evidence playback, and AI-assisted follow-up in one operational chain [1], [2], [18], [19], [23]-[25].
 For this reason, the capstone is positioned as an integrated surveillance prototype rather than as a standalone VMS, edge detector, or AI search tool.
 Its main objective is to make video evidence operationally usable by linking capture, playback, and analysis within one cloud-connected workflow.
-```
 
-```md
+| Requirement group | Reference products and benchmark insight | Remaining gap for the project context | Project response / revised wording |
+| --- | --- | --- | --- |
 | Scalable deployment and centralized multi-site rollout | Eagle Eye, Verkada, Milestone XProtect, and similar systems show multi-site and centralized deployment directions [7], [30] | A clear edge-cloud workflow that preserves local continuity while still supporting centralized playback and AI-assisted investigation is not always visible [3]-[7], [27], [30] | The current system is modular and cloud-connected, so it is suitable for limited scaling in later stages, but the present prototype still depends on personal GCS, MongoDB/Neo4j, and VM infrastructure and should not be described as fully cloud-native or scalability-validated. |
-```
 
-```md
 From this benchmark, the project motivation can be stated more precisely.
 The capstone does not claim feature parity with commercial surveillance platforms.
 Its defensible contribution is a cloud-oriented evidence pipeline that connects event capture, cloud-backed playback, and VSS-based knowledge extraction [3]-[14], [20]-[22], [30], [31].
 In other words, the prototype demonstrates integration across Edge, VMS, and VSS, while stronger security governance, larger-scale validation, and deeper VSS evaluation remain future work.
-```
 
 ### Reason for revision
 
@@ -71,51 +63,43 @@ The revised version removes the stronger claim that the project is already a bro
 
 ### Original text
 
-```md
 For the project titles: cloud-native does not simply mean running on an Internet-accessible virtual machine.
 It means using clear service boundaries, cloud object storage for large video assets, API-based orchestration, asynchronous handoff for long-running analysis, and deployment-ready configuration [6], [7], [30], [43]-[46].
 Scalable means the architecture can grow by separating Edge capture, VMS playback, VSS analysis, media storage, vector search, and graph storage.
 In the current capstone, this is a prototype-readiness claim, not a claim of production autoscaling, multi-tenant access control, complete observability, or production SLOs.
 Components running on personal GCS, MongoDB/Neo4j, or VM resources should therefore be described as cloud-hosted or cloud-connected unless stronger operational controls are demonstrated.
-```
 
-```md
+| Component | Current statute | Why |
+| --- | --- | --- |
 | VMS playback API | Partially cloud-native | Uses FastAPI, GCS-backed playback, HTTP Range, and service boundaries, but still runs in a personal VM-style prototype environment [6], [7], [30], [31], [40]. |
 | VSS MongoDB vector store | Cloud-hosted / partially scalable | Supports vector and event retrieval, but deployment and index governance remain prototype-level [9], [50]. |
 | VSS Neo4j graph store | Cloud-hosted / partially scalable | Supports graph facts and relationships, but graph evaluation and production governance remain incomplete [14]. |
 | Security and privacy controls | Partial / future work | Sensitive surveillance data exists, but personal cloud accounts and VM resources require stronger IAM, encryption, retention, audit, and access controls [47], [52]. |
-```
 
-```md
 The current system follows a hybrid workflow: Edge -> centralized VMS -> VSS analysis.
 Cameras connect at the site edge, event-related clips are forwarded to the VMS for storage and playback, and selected evidence is processed by VSS to generate searchable metadata, identity support, captions, and AI-assisted responses [3]-[14], [29]-[31].
 The current system is best described as a working integration of selected core flows, not as a complete surveillance product.
 Edge event capture has prototype-level validation.
 VMS playback is the strongest operator-facing workflow.
 VSS metadata extraction and vector retrieval are meaningful but still need deeper graph, identity, and answer-faithfulness evaluation [1], [2], [6]-[14]
-```
 
 ### Revised text
 
-```md
 In the current thesis, the system should be described as an integrated, cloud-oriented prototype rather than as a fully cloud-native platform.
 The implemented architecture already uses service separation, cloud object storage, API-based orchestration, and asynchronous handoff patterns [6], [7], [30], [43]-[46], but several operational controls still remain at prototype level because the deployment depends on personal GCS, MongoDB/Neo4j, and VM resources.
 Accordingly, the present evidence supports the terms cloud-connected or cloud-hosted more strongly than a complete cloud-native claim.
-```
 
-```md
+| Component | Revised status | Why |
+| --- | --- | --- |
 | VMS playback API | Cloud-oriented prototype service | Uses FastAPI, GCS-backed playback, HTTP Range, and service boundaries, but still runs in a prototype VM-style environment [6], [7], [30], [31], [40]. |
 | VSS MongoDB vector store | Cloud-hosted / limited-scale prototype | Supports vector and event retrieval, but deployment, governance, and larger-scale validation remain prototype-level [9], [50]. |
 | VSS Neo4j graph store | Cloud-hosted / limited-scale prototype | Supports graph facts and relationships, but graph evaluation and production governance remain incomplete [14]. |
 | Security and privacy controls | Partial / future work | Sensitive surveillance data exists, but personal cloud accounts and VM resources still require stronger authentication, authorization, encryption, retention, audit, and access controls [47], [52]. |
-```
 
-```md
 The current system follows a hybrid workflow: Edge -> centralized VMS -> VSS analysis.
 In its present form, it should be understood as a working integration of selected core flows, not as a complete surveillance platform.
 Edge event capture has prototype-level validation, VMS playback is the strongest operator-facing workflow, and VSS metadata extraction is meaningful but still requires deeper graph, identity, and answer-faithfulness evaluation [1], [2], [3]-[14], [29]-[31].
 The architecture is modular and suitable for limited scaling in later stages, but current evidence only supports small-scale validation rather than a full scalability claim.
-```
 
 ### Reason for revision
 
@@ -127,16 +111,13 @@ The revised wording aligns the overview with the actual maturity of the deployme
 
 ### Original text
 
-```md
 Taken together, these responsibility-specific comparisons clarify the theoretical boundary of the VMS section.
 The VMS playback workflow is not trying to solve every possible video transport problem.
 It is solving the narrower but central problem of reliable recorded-clip review in a browser, with asynchronous handoff to later analysis.
 Within that target, HTTP/REST, multipart/form-data, HTTP Range, object storage, and Pub/Sub form a coherent protocol foundation [31], [38], [40], [43]-[46].
-```
 
 ### Revised text
 
-```md
 Taken together, these responsibility-specific comparisons clarify the theoretical boundary of the VMS section.
 The VMS playback workflow is not trying to solve every possible video transport problem.
 It is solving the narrower but central problem of reliable recorded-clip review in a browser, with asynchronous handoff to later analysis.
@@ -149,7 +130,6 @@ Second, encryption should protect clip transfer in transit through HTTPS/TLS and
 Third, audit logging is required so that clip upload, playback access, query submission, and asynchronous publish events can later be traced for operational review and incident analysis [45]-[47], [52].
 Fourth, retention and deletion policy are required because surveillance clips, metadata, and derived analysis artifacts should not be kept indefinitely without a defined operational purpose, storage limit, or compliance basis [43], [44], [47], [52].
 In the current capstone, these controls should be described as future hardening directions of the VMS prototype rather than as fully implemented governance capabilities.
-```
 
 ### Reason for revision
 
@@ -161,15 +141,12 @@ This addition answers the council's request directly at the theory level. It exp
 
 ### Original text
 
-```md
 The endpoint layer further makes the VMS contract explicit.
 Each endpoint corresponds to one workflow responsibility rather than one vague "video API".
 This makes the implementation easier to evaluate because upload intake, cloud listing, playback streaming, analysis retrieval, and contextual query forwarding can be discussed separately [31], [38], [40].
-```
 
 ### Revised text
 
-```md
 The endpoint layer further makes the VMS contract explicit.
 Each endpoint corresponds to one workflow responsibility rather than one vague "video API".
 This makes the implementation easier to evaluate because upload intake, cloud listing, playback streaming, analysis retrieval, and contextual query forwarding can be discussed separately [31], [38], [40].
@@ -182,7 +159,6 @@ The operational workflow should also be extended with audit and data-lifecycle c
 Upload attempts, playback access, clip-query requests, and Pub/Sub publish events should be logged so that evidence access and system actions can be reviewed later [45]-[47], [52].
 Likewise, retention and deletion rules should later be defined separately for raw upload files, normalized playback files, GCS objects, and VSS-derived analysis artifacts.
 In this capstone, these mechanisms are not yet fully implemented and should therefore be presented as concrete design directions for the next stage of the VMS rather than as completed production controls.
-```
 
 ### Reason for revision
 
@@ -194,7 +170,6 @@ This insertion moves the discussion from theory to architecture. It ties each mi
 
 ### Original text
 
-```md
 The main conclusion is that the project has already validated a meaningful operational chain rather than merely a conceptual architecture.
 The Edge subsystem can transform continuous RTSP streams into event-based clips.
 The VMS subsystem can receive, normalize, store, and play back real video evidence with workable latency and high reliability.
@@ -227,11 +202,9 @@ The VMS layer does not pretend to complete the entire surveillance product space
 The VSS layer does not pretend to resolve every identity or produce every answer with full graph-level certainty.
 Instead, each subsystem exposes what it can reliably do now and leaves room for later extension.
 This makes the overall platform more trustworthy than a design that hides unresolved maturity gaps behind generalized claims.
-```
 
 ### Revised text
 
-```md
 The main conclusion is that the project has validated a meaningful integrated workflow rather than only a conceptual architecture.
 The Edge subsystem can transform continuous RTSP streams into event-based clips, the VMS can receive and play back real video evidence, and the VSS can enrich selected clips with metadata and grounded follow-up support [20]-[22], [47], [51]-[54].
 Among these flows, VMS playback is currently the strongest operator-facing result.
@@ -243,7 +216,6 @@ This result indicates that resource hardening, stress validation, and broader op
 
 For that reason, the system is more accurately described as an integrated, cloud-oriented prototype than as a complete cloud-native surveillance platform.
 Future work should therefore focus on stronger synchronization and resilience from Edge to VMS, broader backend completion beyond playback, deeper VSS evaluation, and more complete security and data-governance controls across authentication, authorization, encryption, audit logging, retention, and deletion policy [47], [52].
-```
 
 ### Reason for revision
 
@@ -318,7 +290,6 @@ Important note: if this compact bibliography is adopted in the original report, 
 
 ### Revised bibliography list (35 references)
 
-```md
 [1] CMC Telecom Da Nang, "Nhu cầu AI Cloud Camera-2," internal requirement collection spreadsheet, n.d.
 
 [2] CMC Telecom Da Nang, "CMC Intern Project Initial BRD," internal business requirements document, n.d.
@@ -388,4 +359,3 @@ Important note: if this compact bibliography is adopted in the original report, 
 [34] OpenAI, "Usage policies," OpenAI Policies, Oct. 29, 2025. Online. Available: https://openai.com/policies/usage-policies/. Accessed: Jun. 17, 2026.
 
 [35] Google Cloud, "Define your evaluation metrics," Gemini Enterprise Agent Platform Documentation, n.d. Online. Available: https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/determine-eval. Accessed: Jun. 17, 2026.
-```
