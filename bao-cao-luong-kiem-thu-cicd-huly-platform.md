@@ -74,6 +74,8 @@ flowchart LR
 | Bắt đầu | 08:37, 29-10-2026 (ICT) |
 | Hoàn tất | Khoảng 09:03, 29-10-2026 (ICT) |
 
+![Huly Mobile BFF workflow run](assets/github-actions-workflow-summary/bff-workflow-run-summary.png)
+
 ### 4.2. Kết quả job kiểm thử
 
 Job kiểm thử có tên `Test Mobile BFF`. Môi trường test sử dụng Python 3.12, dependency được cài bằng `uv sync --frozen --group dev`, với biến môi trường `TESTING=1` và `USE_SQLITE=1`.
@@ -93,6 +95,52 @@ collecting ... collected 399 items
 | Skipped | 13 |
 | Failed | 0 |
 | Thời gian pytest | 60.47 giây |
+
+![BFF — Test Mobile BFF completed](assets/github-actions-detail/bff-test-validation.png)
+
+![BFF pytest log v1 — page 01](assets/huly-mobile-bff-pytest-log/bff-v1-page-01.png)
+
+![BFF pytest log v1 — page 02](assets/huly-mobile-bff-pytest-log/bff-v1-page-02.png)
+
+![BFF pytest log v1 — page 03](assets/huly-mobile-bff-pytest-log/bff-v1-page-03.png)
+
+![BFF pytest log v1 — page 04](assets/huly-mobile-bff-pytest-log/bff-v1-page-04.png)
+
+![BFF pytest log v1 — page 05](assets/huly-mobile-bff-pytest-log/bff-v1-page-05.png)
+
+![BFF pytest log v1 — page 06](assets/huly-mobile-bff-pytest-log/bff-v1-page-06.png)
+
+![BFF pytest log v1 — page 07](assets/huly-mobile-bff-pytest-log/bff-v1-page-07.png)
+
+![BFF pytest log v1 — page 08](assets/huly-mobile-bff-pytest-log/bff-v1-page-08.png)
+
+![BFF pytest log v1 — page 09](assets/huly-mobile-bff-pytest-log/bff-v1-page-09.png)
+
+![BFF pytest log v1 — page 10](assets/huly-mobile-bff-pytest-log/bff-v1-page-10.png)
+
+![BFF pytest log v1 — page 11](assets/huly-mobile-bff-pytest-log/bff-v1-page-11.png)
+
+![BFF pytest log v1 — page 12](assets/huly-mobile-bff-pytest-log/bff-v1-page-12.png)
+
+![BFF pytest log v1 — page 13](assets/huly-mobile-bff-pytest-log/bff-v1-page-13.png)
+
+![BFF pytest log v1 — page 14](assets/huly-mobile-bff-pytest-log/bff-v1-page-14.png)
+
+![BFF pytest log v2 — page 1](assets/huly-mobile-bff-pytest-log/bff-v2-page-1.png)
+
+![BFF pytest log v2 — page 2](assets/huly-mobile-bff-pytest-log/bff-v2-page-2.png)
+
+![BFF pytest log v2 — page 3](assets/huly-mobile-bff-pytest-log/bff-v2-page-3.png)
+
+![BFF pytest log v2 — page 4](assets/huly-mobile-bff-pytest-log/bff-v2-page-4.png)
+
+![BFF pytest log v2 — page 5](assets/huly-mobile-bff-pytest-log/bff-v2-page-5.png)
+
+![BFF pytest log v2 — page 6](assets/huly-mobile-bff-pytest-log/bff-v2-page-6.png)
+
+![BFF pytest log v2 — page 7](assets/huly-mobile-bff-pytest-log/bff-v2-page-7.png)
+
+![BFF pytest log v2 — page 8: final pytest result](assets/huly-mobile-bff-pytest-log/bff-v2-page-8.png)
 
 ### 4.3. Quan hệ giữa test và release
 
@@ -116,6 +164,8 @@ Workflow khai báo release job phụ thuộc vào test job thông qua `needs: te
 | SBOM | Enabled |
 | Provenance | Enabled |
 
+![BFF — Build and publish immutable image completed](assets/github-actions-detail/bff-build-publish.png)
+
 ### 4.5. Kết quả GitOps promotion
 
 Workflow đã tạo Pull Request cập nhật image digest trong repository GitOps:
@@ -126,6 +176,8 @@ Workflow đã tạo Pull Request cập nhật image digest trong repository GitO
 | Pull Request | [#143](https://github.com/istt-aiml-data/cd-deployment/pull/143) |
 | Image được tham chiếu | `ghcr.io/istt-aiml-data/huly-mobile-bff` |
 | Digest được tham chiếu | `sha256:bbcb879df0a9960c36ef18da1033fee69e17f704c0178001ca121bcdfc93e8bf` |
+
+![BFF — Create GitOps image promotion pull request completed](assets/github-actions-detail/bff-gitops-pull-request.png)
 
 ### 4.6. Trạng thái smoke test trong run
 
@@ -138,19 +190,6 @@ Workflow có smoke-test job. Điều kiện chạy hiện tại chỉ cho phép 
 | Nhánh bắt đầu bằng `feat/` | Không |
 | Smoke test được thực thi | Không |
 | Nguyên nhân | Không thỏa điều kiện chạy của workflow |
-
-### 4.7. Bằng chứng ảnh từ GitHub Actions
-
-Chèn ảnh chụp từ GitHub Actions run `40801572604` tại các vị trí sau:
-
-| Mã ảnh | Ảnh cần chụp | Vị trí trong GitHub Actions |
-| --- | --- | --- |
-| BFF-01 | Workflow run có trạng thái `Success`, commit và branch | Trang **Summary** của run |
-| BFF-02 | Kết quả `386 passed, 13 skipped` | Job **Test Mobile BFF**, bước chạy pytest |
-| BFF-03 | Kết quả build/push image và digest | Job release, bước build/push container image |
-| BFF-04 | Pull Request GitOps được tạo | Job release, bước tạo hoặc cập nhật GitOps PR |
-
-> Dán ảnh ngay dưới bảng này, giữ tiêu đề ảnh theo mã `BFF-01` đến `BFF-04` để khớp với nội dung báo cáo.
 
 ## 5. Kết quả kiểm tra: Huly Mobile Flutter Web
 
@@ -166,6 +205,8 @@ Chèn ảnh chụp từ GitHub Actions run `40801572604` tại các vị trí sa
 | Thời lượng | 24 phút 17 giây |
 | Bắt đầu | 11:20, 28-10-2026 (ICT) |
 | Hoàn tất | Khoảng 11:44, 28-10-2026 (ICT) |
+
+![Huly Mobile Flutter Web workflow run](assets/github-actions-workflow-summary/flutter-workflow-run-summary.png)
 
 ### 5.2. Kết quả Flutter analyze và test
 
@@ -184,7 +225,31 @@ No issues found! (ran in 100.1s)
 | Failed | 0 |
 | Thời gian Flutter test | 8 giây |
 
+![Flutter Web — Test and analyze completed](assets/github-actions-detail/flutter-test-validation.png)
+
 Bộ kiểm thử được ghi nhận trong workflow bao gồm các khu vực: touch target 44x44, reflow ở 320px, trạng thái Loading/Empty/Error/Data, hành động CoWork, timeline, recurrence/free-busy và meeting outcome.
+
+![Flutter UI/UX audit — Acceptance Criteria Verification Matrix, page 1](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-03.png)
+
+![Flutter UI/UX audit — Acceptance Criteria Verification Matrix, page 2](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-04.png)
+
+![Flutter UI/UX audit — UI/UX Guideline Automated Gates](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-05.png)
+
+![Flutter UI/UX audit — Hard-to-Automate Features Registry, page 1](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-06.png)
+
+![Flutter UI/UX audit — Hard-to-Automate Features Registry, page 2](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-07.png)
+
+![Flutter UI/UX audit — Raw diagnostic log, page 1](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-08.png)
+
+![Flutter UI/UX audit — Raw diagnostic log, page 2](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-09.png)
+
+![Flutter UI/UX audit — Raw diagnostic log, page 3](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-10.png)
+
+![Flutter UI/UX audit — Flutter analyze and test log, page 1](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-11.png)
+
+![Flutter UI/UX audit — Flutter test log, page 2](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-12.png)
+
+![Flutter UI/UX audit — Flutter test log and final result](assets/huly-mobile-flutter-uiux-audit/uiux-audit-page-13.png)
 
 ### 5.3. Cách thực thi analyze và test trong workflow
 
@@ -208,6 +273,8 @@ Trong workflow đã kiểm tra, output của `flutter analyze` và `flutter test
 | SBOM | Enabled |
 | Provenance | Enabled |
 
+![Flutter Web — Build and publish immutable image completed](assets/github-actions-detail/flutter-build-publish.png)
+
 ### 5.5. Kết quả GitOps promotion
 
 Workflow đã tạo Pull Request cập nhật image digest trong repository GitOps:
@@ -218,6 +285,8 @@ Workflow đã tạo Pull Request cập nhật image digest trong repository GitO
 | Pull Request | [#133](https://github.com/istt-aiml-data/cd-deployment/pull/133) |
 | Image được tham chiếu | `ghcr.io/istt-aiml-data/huly-mobile-flutter-web` |
 | Digest được tham chiếu | `sha256:4384552de3b9003c51dee8a2dc46222056e97a9928f6293a358a790ff97f2782` |
+
+![Flutter Web — Create GitOps image promotion pull request completed](assets/github-actions-detail/flutter-gitops-pull-request.png)
 
 ### 5.6. Trạng thái smoke test trong run
 
@@ -230,19 +299,6 @@ Smoke test có trong workflow và cũng dùng điều kiện chỉ chạy cho Pu
 | Nhánh bắt đầu bằng `feat/` | Không |
 | Smoke test được thực thi | Không |
 | Chức năng smoke test khi được chạy | Kiểm tra `/healthz` và UID/GID `101:101` |
-
-### 5.7. Bằng chứng ảnh từ GitHub Actions
-
-Chèn ảnh chụp từ GitHub Actions run `40631749295` tại các vị trí sau:
-
-| Mã ảnh | Ảnh cần chụp | Vị trí trong GitHub Actions |
-| --- | --- | --- |
-| FLUTTER-01 | Workflow run có trạng thái `Success`, commit và branch | Trang **Summary** của run |
-| FLUTTER-02 | `No issues found!` và `19: All tests passed!` | Job kiểm tra Flutter, bước analyze/test |
-| FLUTTER-03 | Kết quả build/push image và digest | Job release, bước build/push container image |
-| FLUTTER-04 | Pull Request GitOps được tạo | Job release, bước tạo hoặc cập nhật GitOps PR |
-
-> Dán ảnh ngay dưới bảng này, giữ tiêu đề ảnh theo mã `FLUTTER-01` đến `FLUTTER-04` để khớp với nội dung báo cáo.
 
 ## 6. Bảng tổng hợp kết quả
 
